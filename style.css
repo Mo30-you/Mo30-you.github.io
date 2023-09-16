@@ -1,0 +1,17 @@
+form{
+    background-color: rgb(162, 162, 162);
+    padding: 20px;
+    
+}
+  
+#start_time,#end_time{
+    border-radius: 5px;
+    display: inline-table;
+    width: 450px;
+    margin: 0 10px 10px 20px;
+}
+#btn{
+    width: 450px;
+    margin: 0 auto;
+    
+}

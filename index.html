@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>محاسبه ساعت کاری با Vue.js</title>
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.rtl.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</head>
+<body >
+    <div id="app" class="container">
+        <h1 class="text-center p-5">محاسبه ساعت کاری</h1>
+        <div>
+            
+            <input type="time" v-model="start" placeholder="ساعت ورود (HH:MM)" class="form-control m-3">
+            <input type="time" v-model="end" placeholder="ساعت خروج (HH:MM)" class="form-control m-3">
+        </div>
+        <p class="text-center">ساعات کاری: {{ workingHours }}</p>
+        <div class="text-center">
+            <h5>AM: Before noon (English) = قبل از ظهر</h5>
+            <h5>PM: After noon (English) = بعد از ظهر</h5>
+        </div>
+  
+            
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                start: '',
+                end: ''
+            },
+            computed: {
+                workingHours: function () {
+                    if (this.start && this.end) {
+                        const startTime = new Date(`2023-09-13T${this.start}:00`);
+                        const endTime = new Date(`2023-09-13T${this.end}:00`);
+                        const diffMilliseconds = endTime - startTime;
+                        const hours = Math.floor(diffMilliseconds / 3600000);
+                        const minutes = Math.floor((diffMilliseconds % 3600000) / 60000);
+                        return `${hours} ساعت و ${minutes} دقیقه`;
+                    }
+                    return '';
+                }
+            }
+        });
+    </script>
+</body>
+</html>
